@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const db = require("./models");
 
 const Order = db.orders;
@@ -17,19 +16,6 @@ db.sequelize.sync({ force: true }).then(() => {
     console.log("Tablolar oluşturuldu");
     initial();
   });
-
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-
-//front end den gelecek istekler için koruma ve izin sağlar
-app.use(cors(corsOptions));
-
-
-app.use(bodyParser.json());
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 //başlangıç route u
 app.get("/", (req, res) => {
